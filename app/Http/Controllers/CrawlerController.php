@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\WebsiteRequest;
 use App\Services\CrawlerService;
 use App\Http\Resources\WebsiteResource;
 
@@ -16,13 +16,13 @@ class CrawlerController extends Controller
         $this->crawlerService = $crawlerService;
     }
 
-    public function store(Request $request)
+    public function store(WebsiteRequest $request)
     {
         $res = $this->crawlerService->store($request->all());
         return new WebsiteResource($res);
     }
 
-    public function index(Request $request)
+    public function index(WebsiteRequest $request)
     {
         $res = $this->crawlerService->index($request->all());
         return new WebsiteResource($res);

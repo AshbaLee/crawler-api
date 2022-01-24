@@ -77,8 +77,11 @@ ENV TZ ${TZ}
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Crontab
-COPY ./crontab /etc/cron.d
-RUN chmod -R 644 /etc/cron.d
+# COPY ./crontab /etc/cron.d
+# RUN chmod -R 644 /etc/cron.d
+
+# Set php version
+RUN update-alternatives --set php /usr/bin/php7.4
 
 # Clean up
 RUN apt-get clean && \
